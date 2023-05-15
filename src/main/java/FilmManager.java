@@ -1,29 +1,17 @@
 public class FilmManager {
-    private FilmLibrary[] films = new FilmLibrary[0];
-    private FilmLibrary[] filmsReverse = new FilmLibrary[0];
-    private int countFilms = 7;
+    private String[] films = new String[0];
+    private int countFilms;
 
-    public FilmManager() {
-    }
-
-    public FilmLibrary[] getFilms() {
-        return films;
-    }
-
-    public void setFilms(FilmLibrary[] films) {
-        this.films = films;
-    }
-
-    public FilmLibrary[] getFilmsReverse() {
-        return filmsReverse;
-    }
-
-    public void setCountFilms(int countFilms) {
+    public FilmManager(int countFilms) {
         this.countFilms = countFilms;
     }
 
-    public void add(FilmLibrary film) {
-        FilmLibrary[] tmp = new FilmLibrary[films.length + 1];
+    public FilmManager() {
+        this.countFilms = 10;
+    }
+
+    public void add(String film) {
+        String[] tmp = new String[films.length + 1];
         for (int i = 0; i < films.length; i++) {
             tmp[i] = films[i];
         }
@@ -31,23 +19,22 @@ public class FilmManager {
         films = tmp;
     }
 
-    public void findAll() {
-        getFilms();
+    public String[] findAll() {
+        return films;
     }
 
-    public void findLast() {
+    public String[] findLast() {
+        int resultLength;
         if (countFilms > films.length) {
-            countFilms = films.length;
+            resultLength = films.length;
+        } else {
+            resultLength = countFilms;
         }
-
-        FilmLibrary[] tmp = new FilmLibrary[countFilms];
-        int i = 0;
-        int temp = films.length;
-        for (i = 0; i < films.length; i++) {
-            temp = temp - 1;
-            tmp[i] = films[temp];
+        String[] tmp = new String[resultLength];
+        for (int i = 0; i < tmp.length; i++) {
+            tmp[i] = films[films.length - 1 - i];
         }
-        filmsReverse = tmp;
+        return tmp;
     }
 
 }
